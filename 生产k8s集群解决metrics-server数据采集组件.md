@@ -1,9 +1,12 @@
-恢复前
+## 恢复前
 可以看到无法监测节点的监控数据，查看组件metrics-server。
+```
 # kubectl get pods -n kube-system
 NAME                                               READY   STATUS             RESTARTS   AGE       
 metrics-server-6bc4dcc6bd-2tscf                    1/1     Running            0          337d
+```
 组建状态还好。看看日志
+```
 # kubectl logs -f metrics-server-6bc4dcc6bd-2tscf -n kube-system
 I0912 02:28:40.787145       1 heapster.go:77] /metrics-server --source=kubernetes:https://kubernetes.default --sink=socket:tcp://monitor.csk.cn-shenzhen.aliyuncs.com:8093?clusterId=c02e82b6adaf044bd94d251fea1279648&public=true
 I0912 02:28:40.787284       1 heapster.go:78] Metrics Server version v0.2.1
@@ -308,11 +311,13 @@ I0912 02:30:13.445101       1 reststorage.go:93] No metrics for pod kube-system/
 I0912 02:30:13.445224       1 reststorage.go:93] No metrics for pod default/private-reg
 I0912 02:30:13.445308       1 reststorage.go:93] No metrics for pod kube-system/cluster-autoscaler-5cbd7bb484-ppfdn
 I0912 02:30:13.445335       1 reststorage.go:93] No metrics for pod default/gitlab-gitaly-0
+```
 已经挂了。
-恢复
+## 恢复
 升级安装Kubernetes集群的metrics-server组件
 参考文档：https://www.alibabacloud.com/help/zh/doc-detail/108316.htm
 最终配置如下：
+```
 # cat metrics-server.yaml
 apiVersion: v1
 kind: ServiceAccount
@@ -525,4 +530,5 @@ stage-project         venucia-web-7f498f94b5-zqq2h                       0m     
 stage-studio          realibox-ui-editor-6c4c8757f9-6xqnj                0m           2Mi
 stage-studio          vivo-s7-web-6b7d6684c8-4qbth                       0m           3Mi
 test                  test-ci-5568fbc9bc-lxpt7
+```
 👌！
