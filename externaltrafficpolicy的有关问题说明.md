@@ -59,3 +59,26 @@ affinity:
 https://www.asykim.com/blog/deep-dive-into-kubernetes-external-traffic-policies
 K8s中的external-traffic-policy是什么？
 https://bbs.huaweicloud.com/blogs/158642
+
+
+```
+{
+    "go.formatTool": "goimports",
+    "go.goroot": "",
+    "go.gopath": "",
+    "go.inferGopath": true,
+    "go.autocompleteUnimportedPackages": true,
+    "go.gocodePackageLookupMode": "go",
+    "go.gotoSymbol.includeImports": true,
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+    "go.docsTool": "gogetdoc",
+    "editor.accessibilitySupport": "off",
+    "go.alternateTools": {
+
+      "go-langserver": "gopls"
+    },
+    "files.autoSave": "off",
+    "editor.semanticTokenColorCustomizations": null,
+  }
+```
