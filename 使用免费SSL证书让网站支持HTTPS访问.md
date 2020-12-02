@@ -8,7 +8,7 @@
 ## 生成通配符证书
 期间需要根据提示设置DNS TXT记录,用作你对判断你是否拥有域名使用权
 ```
-./certbot-auto certonly  -d   *.realihub.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+./certbot-auto certonly  -d   *.zisefeizhu.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
 ```
 
 | 参数 | 说明 | 
@@ -59,7 +59,7 @@ EFF news, campaigns, and ways to support digital freedom.
 (Y)es/(N)o: N
 Obtaining a new certificate
 Performing the following challenges:
-dns-01 challenge for realihub.com
+dns-01 challenge for zisefeizhu.com
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 NOTE: The IP of this machine will be publicly logged as having requested this
@@ -72,7 +72,7 @@ Are you OK with your IP being logged?
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Please deploy a DNS TXT record under the name
-_acme-challenge.realihub.com with the following value:
+_acme-challenge.zisefeizhu.com with the following value:
 
 JM-pzw0Cf7GKfqu_2tyIA-rmfWptxabEFPEP5gSlLEQ
 
@@ -88,7 +88,7 @@ Press Enter to Continue
 需要注意的地方：
 ```
 Please deploy a DNS TXT record under the name
-_acme-challenge.realihub.com with the following value:
+_acme-challenge.zisefeizhu.com with the following value:
 
 JM-pzw0Cf7GKfqu_2tyIA-rmfWptxabEFPEP5gSlLEQ
 
@@ -100,15 +100,16 @@ Press Enter to Continue
 
 上面输出要求给 _acme-challenge.leixf.cn 配置一条 TXT 记录，在没有确认 TXT 记录生效之前不要回车执行。
 
-我用的是阿里云的域名服务器，控制台具体操作如下图所示：
-![](https://cdn.nlark.com/yuque/0/2020/png/1143489/1606099749940-7ea85b35-9ec2-41a9-b019-3cdae7053e3e.png)
-服务器域名dns配置
+我用的是阿里云的域名服务器，控制台具体操作如下所示：
+云解析DNS --> 域名解析 --> 解析设置 --> 记录类型(TXT) --> 主机记录(_acme-challenge) --> 解析线路(默认) --> 记录值(JM-pzw0Cf7GKfqu_2tyIA-rmfWptxabEFPEP5gSlLEQ) 
+
+
 
 确认生效
 ```
- dig _acme-challenge.realihub.com
+ dig _acme-challenge.zisefeizhu.com
 
-; <<>> DiG 9.10.6 <<>> _acme-challenge.realihub.com
+; <<>> DiG 9.10.6 <<>> _acme-challenge.zisefeizhu.com
 ;; global options: +cmd
 ;; Got answer:
 ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4648
@@ -117,10 +118,10 @@ Press Enter to Continue
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 4096
 ;; QUESTION SECTION:
-;_acme-challenge.realihub.com.  IN      A
+;_acme-challenge.zisefeizhu.com.  IN      A
 
 ;; AUTHORITY SECTION:
-realihub.com.           600     IN      SOA     dns25.hichina.com. hostmaster.hichina.com. 2019121120 3600 1200 86400 360
+zisefeizhu.com.           600     IN      SOA     dns25.hichina.com. hostmaster.hichina.com. 2019121120 3600 1200 86400 360
 
 ;; Query time: 265 msec
 ;; SERVER: 192.168.0.1#53(192.168.0.1)
@@ -137,9 +138,9 @@ Cleaning up challenges
 
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at:
-   /etc/letsencrypt/live/realihub.com/fullchain.pem
+   /etc/letsencrypt/live/zisefeizhu.com/fullchain.pem
    Your key file has been saved at:
-   /etc/letsencrypt/live/realihub.com/privkey.pem
+   /etc/letsencrypt/live/zisefeizhu.com/privkey.pem
    Your cert will expire on 2021-02-21. To obtain a new or tweaked
    version of this certificate in the future, simply run certbot-auto
    again. To non-interactively renew *all* of your certificates, run
@@ -154,12 +155,12 @@ IMPORTANT NOTES:
 查看证书过期时间
 ```
 # ./certbot-auto certificates
-Certificate Name: realihub.com
+Certificate Name: zisefeizhu.com
     Serial Number: 3041ed1be0505aaa20c9c192744c3ed28f3
-    Domains: *.realihub.com
+    Domains: *.zisefeizhu.com
     Expiry Date: 2021-02-21 01:55:54+00:00 (VALID: 89 days)
-    Certificate Path: /etc/letsencrypt/live/realihub.com/fullchain.pem
-    Private Key Path: /etc/letsencrypt/live/realihub.com/privkey.pem
+    Certificate Path: /etc/letsencrypt/live/zisefeizhu.com/fullchain.pem
+    Private Key Path: /etc/letsencrypt/live/zisefeizhu.com/privkey.pem
 ```
 
 验证
@@ -178,17 +179,59 @@ certbot delete --cert-name leixf.cn
 ```
 
 
-./certbot-auto certonly  -d   www.stage.zisefeizhu.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+证书路径：
+```
+/etc/letsencrypt/live/zisefeizhu.com/
+```
 
-./certbot-auto --server https://acme-v02.api.letsencrypt.org/directory -d "*.zisefeizhu.com" --manual --preferred-challenges dns-01 certonly
+## k8s使用
+![](https://cdn.nlark.com/yuque/0/2020/png/1143489/1606458261252-1f84b293-e900-44cd-9f84-c0cf89a12c89.png)
+tls.crt --> /etc/letsencrypt/live/zisefeizhu.com/fullchain.pem
+
+tls.key --> /etc/letsencrypt/live/zisefeizhu.com/privkey.pem
+
+crt.sh
+```
+kubectl create secret tls zisefeizhu-cn-crt --key tls.key --cert tls.crt -n zisefeizhu
+```
+nginx-ingress.yaml
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-test
+  namespace: realihub
+  annotations:
+    kubernetes.io/ingress.class: "kong"
+  labels:
+    app: nginx-test
+spec:
+  tls:
+    - hosts:
+        - "*.zisefeizhu.com"
+      secretName: hub-zisefeizhu-com-crt
+  rules:
+    - host: test.zisefeizhu.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nginx-test
+              servicePort: 80
+```
 
 
-
-
-./certbot-auto certonly  -d   .zisefeizhu.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
 
 
 参考文档：
 https://github.com/jaywcjlove/handbook/blob/master/CentOS/使用免费SSL证书让网站支持HTTPS访问.md
 
 https://leixf.cn/archives/142
+
+
+ ./certbot-auto certonly  -d   *.zisefeizhu.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+ 
+./certbot-auto certonly  -d   *.realihub.com --manual --preferred-challenges dns --server https://acme-v02.api.letsencrypt.org/directory
+ 
+dig -t txt _acme-challenge.realibox.cn  @8.8.8.8 
+
