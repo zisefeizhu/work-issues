@@ -18,7 +18,7 @@ $ git pull
 
 进入本书项目目录（包含当前README.md文件的目录），然后运行：
 
-$ go run .
+$ go run . &
 Server started:
    http://localhost:12345 (non-cached version)
    http://127.0.0.1:12345 (cached version)
