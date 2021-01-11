@@ -258,6 +258,8 @@ Contains components: [scheduler controller-manager etcd-5 etcd-0 etcd-4 etcd-1 e
 
 
 ```
+# pwd
+/var/root/.kube
 # ll
 -rw-r--r--    1 root  wheel   5.9K  8 26 15:39 config.shengchan
 -rw-r--r--    1 root  wheel   5.9K 11 18 15:59 config.yufa
