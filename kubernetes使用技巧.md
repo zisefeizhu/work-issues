@@ -195,4 +195,12 @@ done
 
 
 
+kubectl delete pod -A   --force --grace-period=0 -n mon
+
+
+
+kubectl top pods -n stage-project | sort --reverse --key 3 --numeric
+
+
+
 
