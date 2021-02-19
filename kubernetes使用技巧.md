@@ -204,3 +204,4 @@ kubectl top pods -n stage-project | sort --reverse --key 3 --numeric
 
 
 
+kubectl get deployment -n production-project | awk '{print $1}'|xargs kubectl patch deployment -p'{"spec":{"replicas": 2}}' -n production-project

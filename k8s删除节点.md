@@ -12,7 +12,7 @@ cn-shenzhen.172.16.0.157   Ready    <none>   116s   v1.16.9-aliyun.1
 node/cn-shenzhen.172.16.0.155 cordoned
 # ctl get pod
 
-# ctl drain --ignore-daemonsets cn-shenzhen.172.16.0.155
+# ctl drain --ignore-daemonsets cn-shenzhen.172.16.0.174
 node/cn-shenzhen.172.16.0.155 already cordoned
 error: unable to drain node "cn-shenzhen.172.16.0.155", aborting command...
 
