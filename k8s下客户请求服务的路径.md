@@ -3,3 +3,10 @@
 客户端 -> 域名 -> slb -> 负载均衡
 
 ![]{https://www.yuque.com/docs/share/46b0edc9-4e2e-4ae8-acea-2fa3dcf6b20d?# 《Ingress选型》}
+
+
+
+客户端->域名->slb-> service:kong-ingress-lb ->kong-ingress-controller(本质是一个nginx) ->App service ->App pod
+
+
+客户端->域名->slb-> istio-gateway -> service:kong-ingress-lb ->kong-ingress-controller(本质是一个nginx) ->App service ->App pod

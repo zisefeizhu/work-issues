@@ -24,4 +24,4 @@ docker run --name my_mongo_business -p 47017:27017 -v /data/my_mongo_business/da
 
 
 
-
+docker run -p 6390:6379 -d --name stage-realibox -v /docker/redis/stage-realibox:/data redis:5.0 redis-server --appendonly yes --requirepass Realibox2018
